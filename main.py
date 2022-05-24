@@ -5,6 +5,8 @@ from torchvision import transforms
 from torch import nn, optim
 from spectrogramDataset import spectrogramDataset
 from pauliDataset import pauliDataset
+from ValidationSpectrogram import ValidationSpectrogram
+from ValidationPauli import ValidationPauli
 from net_test import CNeuralNetwork
 from osgeo import gdal
 from pauliDataset import data_transforms
@@ -14,15 +16,19 @@ import os
 
 def main():
 
+
+
+
     batchsz=100
     pauli_ds=pauliDataset(labeltxt='',transform=data_transforms)
     pauli_ds.__init__(labeltxt='', transform=data_transforms)
+
     spectrogram_ds=spectrogramDataset(labeltxt='',transform=data_transforms)
     spectrogram_ds.__init__(labeltxt='', transform=data_transforms)
 
 
-    ev_ds=evlDataset(labeltxt='D:\why2022\seaice\mi3w0409\ALOS-P1_1__A-ORBIT__ALPSRP256411570_Cal_ML_Spk_Decomppauli.txt', transform=data_transforms)
-    ev_ds.__init__(labeltxt='D:\why2022\seaice\mi3w0409\ALOS-P1_1__A-ORBIT__ALPSRP256411570_Cal_ML_Spk_Decomppauli.txt', transform=data_transforms)
+    validation_ds=ValidationPauli(labeltxt='D:\why2022\seaice\mi3w0409\ALOS-P1_1__A-ORBIT__ALPSRP256411570_Cal_ML_Spk_Decomppauli.txt', transform=data_transforms)
+    validation_ds.__init__(labeltxt='D:\why2022\seaice\mi3w0409\ALOS-P1_1__A-ORBIT__ALPSRP256411570_Cal_ML_Spk_Decomppauli.txt', transform=data_transforms)
 
 
     train_loader = torch.utils.data.DataLoader(dataset=in_ds,

@@ -7,7 +7,7 @@ from torchvision import transforms
 from torch.utils.data import Dataset
 import DataTrans
 
-class pauliDataset(Dataset):
+class ValidationSpectrogram(Dataset):
     def __init__(self, labeltxt, transform, target_transform=None):
         fh = open(labeltxt, 'r')
         imgs = []
@@ -47,7 +47,7 @@ data_transforms = transforms.Compose([
 ])
 #"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt"
 #"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt"
-ddss = pauliDataset(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
+ddss = ValidationSpectrogram(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
 ddss.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
 print(ddss.__len__())
 img, gt = ddss.__getitem__(2) # get the 34th sample
