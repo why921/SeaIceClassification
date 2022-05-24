@@ -3,7 +3,6 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision import transforms
 from torch import nn, optim
-from spectrogramDataset import spectrogramDataset
 from pauliDataset import pauliDataset
 from ValidationSpectrogram import ValidationSpectrogram
 from ValidationPauli import ValidationPauli
@@ -12,29 +11,26 @@ from osgeo import gdal
 from pauliDataset import data_transforms
 import numpy as np
 import os
-
+os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 
 def main():
 
-
-
-
     batchsz=100
-    pauli_ds=pauliDataset(labeltxt='',transform=data_transforms)
-    pauli_ds.__init__(labeltxt='', transform=data_transforms)
+    pauli_ds=pauliDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt',transform=data_transforms)
+    pauli_ds.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt', transform=data_transforms)
 
-    spectrogram_ds=spectrogramDataset(labeltxt='',transform=data_transforms)
-    spectrogram_ds.__init__(labeltxt='', transform=data_transforms)
+ #   spectrogram_ds=spectrogramDataset(labeltxt='',transform=data_transforms)
+  #  spectrogram_ds.__init__(labeltxt='', transform=data_transforms)
+
+#"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt"
+    validation_ds=ValidationPauli(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt', transform=data_transforms)
+    validation_ds.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt', transform=data_transforms)
 
 
-    validation_ds=ValidationPauli(labeltxt='D:\why2022\seaice\mi3w0409\ALOS-P1_1__A-ORBIT__ALPSRP256411570_Cal_ML_Spk_Decomppauli.txt', transform=data_transforms)
-    validation_ds.__init__(labeltxt='D:\why2022\seaice\mi3w0409\ALOS-P1_1__A-ORBIT__ALPSRP256411570_Cal_ML_Spk_Decomppauli.txt', transform=data_transforms)
-
-
-    train_loader = torch.utils.data.DataLoader(dataset=in_ds,
+    train_loader = torch.utils.data.DataLoader(dataset=pauli_ds,
                                                batch_size=batchsz,
                                                shuffle=False)
-    test_loader = torch.utils.data.DataLoader(dataset=ev_ds,
+    test_loader = torch.utils.data.DataLoader(dataset=validation_ds,
                                               batch_size=batchsz,
                                               shuffle=False)
     device = torch.device('cuda')
@@ -57,24 +53,19 @@ def main():
             x, label = x.to(device), label.to(device)
             #print(x.shape)
             logits = model(x)
-            loss = loss_func(logits, label - 1)
+            loss = loss_func(logits, label)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-# print(epoch, 'loss:', loss.item())
+#print(epoch, 'loss:', loss.item())
     model.eval()
     with torch.no_grad(),open('test.txt','a') as f:
         for x, label in test_loader:
-        # [b, 3, 32, 32]
-        # [b]
           x, label = x.to(device), label.to(device)
           logits = model(x)
           pred = logits.argmax(dim=1)
-          #pprreedd=pred.cpu().numpy()
           pprreedd = np.array(pred.cpu())
-          #print(pprreedd)
           np.savetxt(f, pprreedd, fmt='%d',delimiter=' ')
-          #idtxt.write(pprreedd)
     idtxt.close()
 if __name__ == '__main__':
     main()
