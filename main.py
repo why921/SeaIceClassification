@@ -15,8 +15,11 @@ import os
 def main():
 
     batchsz=100
-    in_ds = SeaIceDataset(labeltxt='D:\why2022\seaice\data_process\green.txt', transform=data_transforms)
-    in_ds.__init__(labeltxt='D:\why2022\seaice\data_process\green.txt', transform=data_transforms)
+    pauli_ds=pauliDataset(labeltxt='',transform=data_transforms)
+    pauli_ds.__init__(labeltxt='', transform=data_transforms)
+    spectrogram_ds=spectrogramDataset(labeltxt='',transform=data_transforms)
+    spectrogram_ds.__init__(labeltxt='', transform=data_transforms)
+
 
     ev_ds=evlDataset(labeltxt='D:\why2022\seaice\mi3w0409\ALOS-P1_1__A-ORBIT__ALPSRP256411570_Cal_ML_Spk_Decomppauli.txt', transform=data_transforms)
     ev_ds.__init__(labeltxt='D:\why2022\seaice\mi3w0409\ALOS-P1_1__A-ORBIT__ALPSRP256411570_Cal_ML_Spk_Decomppauli.txt', transform=data_transforms)

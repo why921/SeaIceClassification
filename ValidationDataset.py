@@ -26,9 +26,11 @@ class pauliDataset(Dataset):
         band1 = ds.GetRasterBand(1)
         band2 = ds.GetRasterBand(2)
         band3 = ds.GetRasterBand(3)
+
         im_data1 = band1.ReadAsArray()
         im_data2 = band2.ReadAsArray()
         im_data3 = band3.ReadAsArray()
+
         img = np.array([im_data1, im_data2, im_data3])
 
         if self.transform is not None:
@@ -43,9 +45,9 @@ data_transforms = transforms.Compose([
    DataTrans.Numpy2Tensor(),
 ])
 
-#"E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_48.txt"
-ddss = pauliDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt',transform=data_transforms)
-ddss.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt',transform=data_transforms)
+#"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt"
+ddss = pauliDataset(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt',transform=data_transforms)
+ddss.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt',transform=data_transforms)
 print(ddss.__len__())
 img, gt = ddss.__getitem__(2) # get the 34th sample
 print(type(img))
