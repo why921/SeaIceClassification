@@ -45,13 +45,13 @@ class spectrogramDataset(Dataset):
 data_transforms = transforms.Compose([
    DataTrans.Numpy2Tensor(),
 ])
-
+'''
 #"E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_spe_48_4bands.txt"
-ddss = spectrogramDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_spe_48_4bands.txt',transform=data_transforms)
-ddss.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_spe_48_4bands.txt',transform=data_transforms)
+ddss = spectrogramDataset(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
+ddss.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
 print(ddss.__len__())
 img, gt = ddss.__getitem__(2) # get the 34th sample
 print(type(img))
 print(img)
 print(gt)
-
+'''

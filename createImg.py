@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from torchvision.utils import make_grid
 from torchvision.utils import save_image
 
-data = np.loadtxt('test.txt')
+data = np.loadtxt('stest.txt')
 
 print(data.shape)
 

@@ -47,7 +47,7 @@ class CNeuralNetwork(nn.Module):
 
 def main():
     net=CNeuralNetwork()
-    tmp = torch.randn(38, 3, 24, 24)
+    tmp = torch.randn(100, 3, 24, 24)
     out = net(tmp)
     print(out.shape)
 
