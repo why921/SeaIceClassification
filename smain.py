@@ -17,8 +17,6 @@ os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 def main():
 
     batchsz=100
-   # pauli_ds=pauliDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt',transform=data_transforms)
-  #  pauli_ds.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt', transform=data_transforms)
 
     spectrogram_ds=spectrogramDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_spe_24_4bands.txt',transform=data_transforms)
     spectrogram_ds.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_spe_24_4bands.txt', transform=data_transforms)
@@ -37,12 +35,11 @@ def main():
     device = torch.device('cuda')
 
     x, label = iter(train_loader).next()
- #   print('x:', x.shape, 'label:', label.shape)
+    print('x:', x.shape, 'label:', label.shape)
 
     model = SNeuralNetwork().to(device)
     model.zero_grad()
-   # loss_func = nn.MSELoss()
-   #criteon = nn.CrossEntropyLoss().to(device)
+
     loss_func=nn.CrossEntropyLoss().to(device)
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
 #    print(model)
