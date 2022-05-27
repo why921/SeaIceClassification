@@ -1,7 +1,4 @@
 import numpy as np
-import os
-import torch
-import pandas as pd
 from osgeo import gdal
 from torchvision import transforms
 from torch.utils.data import Dataset
