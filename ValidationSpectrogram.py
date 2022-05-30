@@ -42,8 +42,8 @@ class ValidationSpectrogram(Dataset):
 data_transforms = transforms.Compose([
    DataTrans.Numpy2Tensor(),
 ])
-#"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt"
-#"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt"
+
+
 ddss = ValidationSpectrogram(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
 ddss.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
 print(ddss.__len__())
