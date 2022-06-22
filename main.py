@@ -14,10 +14,10 @@ import os
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 
 def main():
-
+#pauliDataPath
     batchsz=100
-    pauli_ds=pauliDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt',transform=data_transforms)
-    pauli_ds.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt', transform=data_transforms)
+    pauli_ds=pauliDataset(labeltxt='pauliDataPath.txt',transform=data_transforms)
+    pauli_ds.__init__(labeltxt='pauliDataPath.txt', transform=data_transforms)
 
  #   spectrogram_ds=spectrogramDataset(labeltxt='',transform=data_transforms)
   #  spectrogram_ds.__init__(labeltxt='', transform=data_transforms)
@@ -29,7 +29,7 @@ def main():
 
     train_loader = torch.utils.data.DataLoader(dataset=pauli_ds,
                                                batch_size=batchsz,
-                                               shuffle=False)
+                                               shuffle=True)
     test_loader = torch.utils.data.DataLoader(dataset=validation_ds,
                                               batch_size=batchsz,
                                               shuffle=False)
