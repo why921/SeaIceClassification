@@ -33,7 +33,7 @@ class SNeuralNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(64, 64),
             nn.ReLU(),
-            nn.Linear(64, 4),
+            nn.Linear(64, 5),#64,4
         )
     def forward(self, x):
         #b 3 24 24---b 32 6 6

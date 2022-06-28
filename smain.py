@@ -17,11 +17,16 @@ os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 def main():
 
     batchsz=100
-
+    '''
     spectrogram_ds=spectrogramDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_spe_24_4bands.txt',transform=data_transforms)
     spectrogram_ds.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_spe_24_4bands.txt', transform=data_transforms)
+    '''
+    spectrogram_ds = spectrogramDataset(
+        labeltxt='spectrogramDataPath.txt', transform=data_transforms)
+    spectrogram_ds.__init__(labeltxt='spectrogramDataPath.txt',
+                            transform=data_transforms)
 
-#"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt"
+    #"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt"
     validation_ds=ValidationSpectrogram(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt', transform=data_transforms)
     validation_ds.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt', transform=data_transforms)
 
@@ -56,6 +61,7 @@ def main():
             loss.backward()
             optimizer.step()
 #print(epoch, 'loss:', loss.item())
+    torch.save(model, 'models/models12test0625fff.pkl')
     model.eval()
     with torch.no_grad(),open('stest.txt','a') as f:
         for x, label in test_loader:

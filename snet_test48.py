@@ -15,27 +15,33 @@ class SNeuralNetwork(nn.Module):
         super(SNeuralNetwork, self).__init__()
         self.conv1 = nn.Sequential(
 
-            nn.Conv2d(4, 32, kernel_size=3, padding=1),
-            nn.ReLU(True),
-            nn.Conv2d(32, 32, kernel_size=3, padding=1),
-            nn.ReLU(True),
-            nn.MaxPool2d(kernel_size=2, stride=2),
-
-            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.Conv2d(4, 64, kernel_size=3, padding=1),
             nn.ReLU(True),
             nn.Conv2d(64, 64, kernel_size=3, padding=1),
             nn.ReLU(True),
             nn.MaxPool2d(kernel_size=2, stride=2),
 
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.ReLU(True),
+            nn.Conv2d(128, 128, kernel_size=3, padding=1),
+            nn.ReLU(True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
 
+            nn.Conv2d(128, 512, kernel_size=3, padding=1),
+            nn.ReLU(True),
+            nn.Conv2d(512, 512, kernel_size=3, padding=1),
+            nn.ReLU(True),
+            nn.Conv2d(512, 512, kernel_size=3, padding=1),
+            nn.ReLU(True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
         )
         #2 32 6 6
         self.fc = nn.Sequential(
-            nn.Linear(64*6*6,64),
+            nn.Linear(512*3*3,4096),
             nn.ReLU(),
-            nn.Linear(64, 64),
+            nn.Linear(4096, 4096),
             nn.ReLU(),
-            nn.Linear(64, 5),
+            nn.Linear(4096, 5),
         )
     def forward(self, x):
         #b 3 24 24---b 32 6 6

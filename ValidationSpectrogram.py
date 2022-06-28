@@ -43,7 +43,7 @@ data_transforms = transforms.Compose([
    DataTrans.Numpy2Tensor(),
 ])
 
-
+'''
 ddss = ValidationSpectrogram(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
 ddss.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt',transform=data_transforms)
 print(ddss.__len__())
@@ -51,3 +51,4 @@ img, gt = ddss.__getitem__(2) # get the 34th sample
 print(type(img))
 print(img)
 print(gt)
+'''

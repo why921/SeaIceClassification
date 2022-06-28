@@ -3,10 +3,10 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision import transforms
 from torch import nn, optim
-from spectrogramDataset import spectrogramDataset
+from pauliDataset import pauliDataset
 from ValidationSpectrogram import ValidationSpectrogram
 from ValidationPauli import ValidationPauli
-from snet_test import SNeuralNetwork
+from net_test48 import CNeuralNetwork
 from osgeo import gdal
 from pauliDataset import data_transforms
 from torch.utils.tensorboard import SummaryWriter
@@ -14,12 +14,13 @@ import numpy as np
 import os
 
 
-
-#"E:\ALOSPALSAR\TrainData\ALPSRP205991510\ALPSRP205991510_spe_48_4bands.txt"
+#"E:\ALOSPALSAR\TrainData\ALPSRP205991510\ALPSRP205991510_36.txt"
+#"E:\ALOSPALSAR\TrainData\ALPSRP205991510\ALPSRP205991510_48.txt"
 # writer = SummaryWriter('logs')
+#"E:\SeaIceClassification\pauliDataPath36.txt"
 batchsz=50
-pauli_ds=spectrogramDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP205991510\ALPSRP205991510_spe_24_4bands.txt',transform=data_transforms)
-pauli_ds.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP205991510\ALPSRP205991510_spe_24_4bands.txt', transform=data_transforms)
+pauli_ds=pauliDataset(labeltxt='pauliDataPath48.txt',transform=data_transforms)
+pauli_ds.__init__(labeltxt='pauliDataPath48.txt', transform=data_transforms)
 
 
 
@@ -31,7 +32,7 @@ device = torch.device('cuda')
 x, label = iter(train_loader).next()
 print('x:', x.shape, 'label:', label.shape)
 
-model = SNeuralNetwork().to(device)
+model = CNeuralNetwork().to(device)
 
 loss_func=nn.CrossEntropyLoss().to(device)
 optimizer = optim.Adam(model.parameters(), lr=1e-4)
@@ -48,7 +49,7 @@ for epoch in range(1000):
         loss.backward()
         optimizer.step()
         # writer.add_scalar("Train/Loss", loss.item(), batchidx)
-torch.save(model, 'models/models24test0623.pkl')
+torch.save(model, 'models/modelp48test0626_all.pkl')
 
 
 #model = torch.load('model.pkl')
