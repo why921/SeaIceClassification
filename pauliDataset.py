@@ -44,6 +44,7 @@ data_transforms = transforms.Compose([
 ])
 
 #"E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_48.txt"
+'''
 ddss = pauliDataset(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt',transform=data_transforms)
 ddss.__init__(labeltxt='E:\ALOSPALSAR\TrainData\ALPSRP267211510\ALPSRP267211510_24.txt',transform=data_transforms)
 print(ddss.__len__())
@@ -51,3 +52,4 @@ img, gt = ddss.__getitem__(2) # get the 34th sample
 print(type(img))
 print(img)
 print(gt)
+'''

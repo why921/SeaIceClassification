@@ -19,10 +19,10 @@ def main():
     batchsz=50
 
 
-
+#"E:\ALOSPALSAR\TrainData\spe4bands12.txt"
     #"E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\pauli24.txt"
-    validation_ds=ValidationSpectrogram(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP258351560_3\spe4bands12.txt', transform=data_transforms)
-    validation_ds.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP258351560_3\spe4bands12.txt', transform=data_transforms)
+    validation_ds=ValidationSpectrogram(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP201761520\spe4bands12.txt', transform=data_transforms)
+    validation_ds.__init__(labeltxt='E:\ALOSPALSAR\ValidationData\ALPSRP201761520\spe4bands12.txt', transform=data_transforms)
 
 #""E:\ALOSPALSAR\ValidationData\ALPSRP205991510test\spe4bands12.txt""
 
@@ -31,10 +31,10 @@ def main():
                                               shuffle=False)
     device = torch.device('cuda')
 
-    model = torch.load('models\models12test0625fff.pkl')
-    idtxt = open('img_txt\ALPSRP258351560spe3.txt', 'w')
+    model = torch.load('models//s12model0701_1.pkl')
+    idtxt = open('img_txt\AALPSRP201761520spe1_12_0701.txt', 'w')
     model.eval()
-    with torch.no_grad(),open('img_txt\ALPSRP258351560spe3.txt','a') as f:
+    with torch.no_grad(),open('img_txt\ALPSRP201761520spe1_12_0701.txt','a') as f:
         for x, label in test_loader:
           x, label = x.to(device), label.to(device)
           logits = model(x)

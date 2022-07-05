@@ -24,19 +24,19 @@ device = torch.device('cuda')
 #"E:\SeaIceClassification\models\modelp36test0621_all.pkl"
 #"E:\SeaIceClassification\models\modelp48test0626_all.pkl"
 
-idtxt = open('img_txt\ALPSRP201761520p1_48.txt', 'w')
+idtxt = open('img_txt\\resALPSRP201761520p1_48.txt', 'w')
 #porb=open('probability\\ALPSRP258351560test0625.txt','w')
 #losstxt=open('probability\\losstest0625.txt','w')
 #open('probability\\test0625.txt','a') as ff,open('probability\\losstest0625.txt','a') as fff
 
 
-
-model = torch.load('models\modelp48test0626_all.pkl')
+#"E:\SeaIceClassification\models\resmodelp48test0701_all.pkl"
+model = torch.load('models\\resmodelp48test0701_all.pkl')
 
 
 loss_func=nn.CrossEntropyLoss().to(device)
 model.eval()
-with torch.no_grad(),open('img_txt\ALPSRP201761520p1_48.txt','a') as f:
+with torch.no_grad(),open('img_txt\\resALPSRP201761520p1_48.txt','a') as f:
     for x, label in test_loader:
         x, label = x.to(device), label.to(device)
         logits = model(x)

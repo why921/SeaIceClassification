@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from torchvision.utils import make_grid
 from torchvision.utils import save_image
 #"E:\SeaIceClassification\img_txt\ALPSRP258351560spe2.txt"
-data = np.loadtxt('img_txt\ALPSRP201761520p1_48.txt')
+data = np.loadtxt('img_txt\ALPSRP201761520spe1_12_0701.txt')
 
 print(data.shape)
 
